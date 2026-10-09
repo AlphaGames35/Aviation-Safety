@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авиационная безопасность — Тест и Шпаргалка к зачёту</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-light: #e0f2fe;
+      --success: #16a34a;
+      --success-hover: #15803d;
+      --success-light: #dcfce7;
+      --danger: #dc2626;
+      --danger-hover: #b91c1c;
+      --danger-light: #fee2e2;
+      --warning: #d97706;
+      --warning-light: #fef3c7;
+      --purple: #7c3aed;
+      --purple-light: #f3e8ff;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04);
+      --shadow-hover: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1329;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary: #38bdf8;
+      --primary-hover: #7dd3fc;
+      --primary-light: #082f49;
+      --success: #4ade80;
+      --success-hover: #22c55e;
+      --success-light: #064e3b;
+      --danger: #f87171;
+      --danger-hover: #ef4444;
+      --danger-light: #450a0a;
+      --warning: #fbbf24;
+      --warning-light: #451a03;
+      --purple: #c084fc;
+      --purple-light: #3b0764;
+      --shadow: 0 4px 8px rgba(0,0,0,0.3);
+      --shadow-hover: 0 12px 20px rgba(0,0,0,0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: background-color 0.25s, color 0.25s;
+      padding-bottom: 70px;
+    }
+
+    /* Шапка */
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 18px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      transition: padding 0.25s ease;
+    }
+
+    header.collapsed {
+      padding: 8px 14px;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    header.collapsed .header-container {
+      gap: 0;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .header-title {
+      transition: all 0.2s ease;
+    }
+
+    .header-title h1 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-title p {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    /* Компактный индикатор в свернутом виде */
+    .mini-bar {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    header.collapsed .header-title {
+      display: none;
+    }
+
+    header.collapsed .mini-bar {
+      display: flex;
+    }
+
+    .header-btns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .btn-hdr {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 6px 11px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-hdr:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .btn-toggle-hdr {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-toggle-hdr:hover {
+      background: rgba(56, 189, 248, 0.35);
+      color: #ffffff;
+    }
+
+    .btn-start-quiz {
+      background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 8px 15px;
+      border-radius: 9px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-start-quiz:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.5);
+    }
+
+    /* Прогресс-бар */
+    .progress-section {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 9px 12px;
+      border-radius: 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+
+    header.collapsed .progress-section {
+      display: none;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 9px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #38bdf8 0%, #4ade80 100%);
+      border-radius: 5px;
+      transition: width 0.3s ease;
+    }
+
+    /* Основной контейнер */
+    .main-wrap {
+      max-width: 1200px;
+      margin: 18px auto 0;
+      padding: 0 16px;
+    }
+
+    /* Контролы и фильтры */
+    .controls {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 12px 14px 12px 42px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+
+    .search-wrap input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+    }
+
+    .filters-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .filter-btn {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .global-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .btn-act {
+      background: var(--bg);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .btn-act:hover {
+      background: var(--border);
+    }
+
+    /* Карточки вопросов */
+    .cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .q-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .q-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .q-card.learned {
+      border-left: 6px solid var(--success);
+    }
+
+    .q-card.unlearned {
+      border-left: 6px solid var(--warning);
+    }
+
+    .card-head {
+      padding: 16px 18px;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transition: background 0.15s;
+    }
+
+    .card-head:hover {
+      background: rgba(2, 132, 199, 0.03);
+    }
+
+    .q-card.open .card-head {
+      background: rgba(2, 132, 199, 0.05);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-head-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .num-badge {
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 5px 9px;
+      border-radius: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .card-head-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tag-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .tag-intl { background: var(--purple-light); color: var(--purple); }
+    .tag-law { background: var(--primary-light); color: var(--primary); }
+    .tag-crew { background: var(--danger-light); color: var(--danger); }
+    .tag-sec { background: var(--warning-light); color: var(--warning); }
+
+    .status-icon {
+      font-size: 1.15rem;
+    }
+
+    .chevron {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-muted);
+      transition: transform 0.25s;
+    }
+
+    .q-card.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .card-body {
+      padding: 18px;
+      display: none;
+      font-size: 0.94rem;
+      color: var(--text-main);
+    }
+
+    .q-card.open .card-body {
+      display: block;
+    }
+
+    .learn-toggle-bar {
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .btn-learn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+    }
+
+    .btn-learn.to-learn {
+      background: var(--success-light);
+      color: var(--success);
+      border-color: var(--success);
+    }
+
+    .btn-learn.to-learn:hover {
+      background: var(--success);
+      color: #ffffff;
+    }
+
+    .btn-learn.is-learned {
+      background: var(--warning-light);
+      color: var(--warning);
+      border-color: var(--warning);
+    }
+
+    .btn-learn.is-learned:hover {
+      background: var(--warning);
+      color: #ffffff;
+    }
+
+    /* Блоки оформления ответов */
+    .box {
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .box-summary { background: var(--primary-light); border-left: 4px solid var(--primary); }
+    .box-steps { background: var(--purple-light); border-left: 4px solid var(--purple); }
+    .box-warning { background: var(--warning-light); border-left: 4px solid var(--warning); }
+    .box-danger { background: var(--danger-light); border-left: 4px solid var(--danger); }
+    .box-law { background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--text-muted); }
+
+    .box-title {
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-top: 6px;
+      margin-bottom: 8px;
+    }
+
+    li { margin-bottom: 5px; }
+
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+      margin-top: 16px;
+    }
+
+    .btn-copy {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-copy:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    /* Модальное окно теста */
+    .quiz-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(5px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .quiz-overlay.active {
+      display: flex;
+    }
+
+    .quiz-modal {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 820px;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+      animation: modalIn 0.25s ease-out;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .quiz-header {
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .quiz-header-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-quiz-close {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .btn-quiz-close:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .quiz-subbar {
+      padding: 10px 20px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .quiz-subbar-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .quiz-track {
+      width: 100%;
+      height: 7px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #38bdf8 0%, #2563eb 100%);
+      transition: width 0.3s ease;
+    }
+
+    .quiz-body {
+      padding: 22px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .quiz-question-card {
+      margin-bottom: 20px;
+    }
+
+    .quiz-q-num {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-q-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.4;
+      color: var(--text-main);
+    }
+
+    .quiz-reveal-wrap {
+      margin: 18px 0;
+      text-align: center;
+    }
+
+    .btn-reveal {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px dashed var(--primary);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-reveal:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .quiz-answer-content {
+      display: none;
+      animation: fadeIn 0.25s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .quiz-footer {
+      padding: 16px 20px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .eval-buttons {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .btn-eval {
+      flex: 1;
+      padding: 13px 18px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-eval-wrong {
+      background: var(--danger-light);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+
+    .btn-eval-wrong:hover {
+      background: var(--danger);
+      color: #ffffff;
+    }
+
+    .btn-eval-correct {
+      background: var(--success);
+      color: #ffffff;
+    }
+
+    .btn-eval-correct:hover {
+      background: var(--success-hover);
+    }
+
+    .quiz-result-view {
+      text-align: center;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .quiz-result-icon { font-size: 3.5rem; }
+    .quiz-result-title { font-size: 1.5rem; font-weight: 800; }
+
+    .quiz-stats-grid {
+      display: flex;
+      gap: 16px;
+      margin: 10px 0 20px;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .stat-box {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .stat-val { font-size: 1.6rem; font-weight: 800; }
+    .stat-lbl { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+
+    @media (max-width: 680px) {
+      .header-title h1 { font-size: 1.15rem; }
+      .card-head { flex-direction: column; align-items: flex-start; }
+      .card-head-right { width: 100%; justify-content: space-between; }
+      .eval-buttons { flex-direction: column; }
+      .quiz-stats-grid { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ВЕРХНЯЯ ПАНЕЛЬ С КНОПКОЙ СВОРАЧИВАНИЯ -->
+  <header id="mainHeader">
+    <div class="header-container">
+      <div class="header-top">
+        <!-- Полный заголовок -->
+        <div class="header-title" id="headerTitle">
+          <h1>✈️ Авиационная безопасность (АБ)</h1>
+          <p>Интерактивная шпаргалка & Тренажёр к зачёту • Специальность 25.02.04</p>
+        </div>
+
+        <!-- Компактная плашка при скрытии -->
+        <div class="mini-bar" id="miniBar">
+          <span>✈️ АБ (25.02.04)</span>
+          <span style="color: #94a3b8; font-size: 0.8rem;" id="miniProgressText">• 0/30</span>
+        </div>
+
+        <!-- Кнопки управления -->
+        <div class="header-btns">
+          <button class="btn-start-quiz" onclick="startQuizMode()">🎯 Тест</button>
+          <button class="btn-hdr btn-toggle-hdr" id="toggleHeaderBtn" onclick="toggleHeaderCollapse()">🔼 Свернуть</button>
+          <button class="btn-hdr" onclick="resetProgress()">🔄 Сброс</button>
+          <button class="btn-hdr" id="themeBtn" onclick="toggleTheme()">🌙</button>
+        </div>
+      </div>
+
+      <!-- Большой прогресс-бар -->
+      <div class="progress-section" id="headerProgress">
+        <div class="progress-labels">
+          <span id="progressText">Прогресс: 0 из 30 выучено</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ОСНОВНОЙ КОНТЕНТ -->
+  <div class="main-wrap">
+    <section class="controls">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Поиск по номеру, ключевому слову или закону (ст. 58, 211, ФАП-275)..." oninput="applyFilters()">
+      </div>
+
+      <div class="filters-wrap">
+        <button class="filter-btn active" onclick="setFilter('all', this)">📂 Все (30)</button>
+        <button class="filter-btn" onclick="setFilter('unlearned', this)">⏳ Надо выучить (<span id="countUnlearned">30</span>)</button>
+        <button class="filter-btn" onclick="setFilter('learned', this)">✅ Выучено (<span id="countLearned">0</span>)</button>
+        <button class="filter-btn" onclick="setFilter('intl', this)">🌐 Конвенции</button>
+        <button class="filter-btn" onclick="setFilter('law', this)">🇷🇺 Законы РФ / ФАП</button>
+        <button class="filter-btn" onclick="setFilter('crew', this)">👨‍✈️ Экипаж при АНВ</button>
+        <button class="filter-btn" onclick="setFilter('sec', this)">🔍 Досмотр и режим</button>
+        <button class="filter-btn" onclick="setFilter('bomb', this)">💣 Взрывные угрозы</button>
+      </div>
+
+      <div class="global-actions">
+        <span style="font-size: 0.85rem; color: var(--text-muted);" id="visibleCounter">Показано: 30 из 30</span>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-act" onclick="expandAll(true)">📖 Развернуть все</button>
+          <button class="btn-act" onclick="expandAll(false)">📁 Свернуть все</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Список карточек вопросов -->
+    <div class="cards-list" id="cardsList"></div>
+  </div>
+
+  <!-- МОДАЛЬНЫЙ ТРЕНАЖЕР / ТЕСТ -->
+  <div class="quiz-overlay" id="quizOverlay">
+    <div class="quiz-modal">
+      <div class="quiz-header">
+        <div class="quiz-header-title">
+          <span>🎯 Режим проверки знаний</span>
+        </div>
+        <button class="btn-quiz-close" onclick="closeQuizMode()">Закрыть ✕</button>
+      </div>
+
+      <div class="quiz-subbar" id="quizSubbar">
+        <div class="quiz-subbar-info">
+          <span id="quizIndexLabel">Вопрос 1 из 10</span>
+          <span id="quizRemainingLabel">Осталось в очереди: 10</span>
+        </div>
+        <div class="quiz-track">
+          <div class="quiz-progress-fill" id="quizProgressFill"></div>
+        </div>
+      </div>
+
+      <div class="quiz-body" id="quizBody"></div>
+
+      <div class="quiz-footer" id="quizFooter">
+        <div class="eval-buttons" id="evalButtons" style="display: none;">
+          <button class="btn-eval btn-eval-wrong" onclick="handleQuizAnswer(false)">
+            ❌ Не помню / Ошибка
+          </button>
+          <button class="btn-eval btn-eval-correct" onclick="handleQuizAnswer(true)">
+            ✅ Знаю / Ответил верно
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 30 ВОПРОСОВ ПО ПРОГРАММЕ
+    const questions = [
+      {
+        id: 1,
+        title: "Конвенция о преступлениях и некоторых других актах, совершаемых на борту ВС (Токио, 1963 г.)",
+        tag: "Конвенция",
+        tagClass: "tag-intl",
+        cat: "intl",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Основные реквизиты и суть</div>
+            Подписана: Токио, 14.09.1963 г. Вступила в силу: 04.12.1969 г. СССР ратифицировал в 1987 г. Регулирует уголовные преступления и акты, нарушающие порядок и безопасность на борту воздушного судна.
+          </div>
+          <div class="box box-law">
+            <div class="box-title">⚖️ Понятие нахождения ВС «в полёте» (Ст. 1)</div>
+            Воздушное судно считается находящимся в полёте <strong>с момента закрытия всех внешних дверей после погрузки до момента открытия любой из дверей для выгрузки</strong>. При вынужденной посадке — до тех пор, пока власти не возьмут ответственность на себя.
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">👨‍✈️ Права и полномочия КВС (Ст. 6, 7, 8, 9)</div>
+            <ul>
+              <li><strong>Ограничительные меры:</strong> КВС вправе применить разумные меры пресечения и сдерживания к лицу, совершившему или готовящему правонарушение.</li>
+              <li><strong>Помощь экипажа и пассажиров:</strong> КВС вправе <em>требовать</em> помощи членов экипажа, но в отношении пассажиров — только <em>просить или разрешать</em> помощь.</li>
+              <li><strong>Самостоятельные действия:</strong> Любой член экипажа или пассажир может применить превентивные меры без приказа КВС, если они требуются немедленно.</li>
+              <li><strong>Высадка и передача:</strong> КВС вправе высадить нарушителя в любой стране посадки или передать его под стражу властям при совершении тяжкого преступления.</li>
+            </ul>
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">🛡️ Иммунитет от судебной ответственности (Ст. 10)</div>
+            КВС, члены экипажа, пассажиры и эксплуатант <strong>не несут юридической ответственности</strong> ни при каком судебном разбирательстве за правомерные действия по сдерживанию правонарушителя.
+          </div>
+        `
+      },
+      {
+        id: 2,
+        title: "Конвенция о борьбе с незаконным захватом воздушных судов (Гаага, 1970 г.)",
+        tag: "Конвенция",
+        tagClass: "tag-intl",
+        cat: "intl",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Реквизиты и состав преступления</div>
+            Подписана: Гаага, 16.12.1970 г. Вступила в силу: 14.10.1971 г. Ратифицирована СССР в 1971 г.<br>
+            <strong>Преступление:</strong> Незаконный и умышленный захват находящегося в эксплуатации ВС или контроль над ним силой, угрозой насилия, запугиванием или техническими средствами. Наказуемы также попытка, соучастие, содействие и угроза захвата.
+          </div>
+          <div class="box box-law">
+            <div class="box-title">⏱️ Период нахождения ВС «в эксплуатации» (Ст. 3)</div>
+            С момента <strong>начала предполётной подготовки наземным персоналом или экипажем до истечения 24 часов после любой посадки</strong>. (Не применяется к военным, таможенным и полицейским судам).
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">🚨 Принцип неотвратимости наказания (Ст. 7)</div>
+            <strong>«Aut dedere aut judicare» (Выдай либо суди):</strong> Государство-участник, где находится преступник, обязано либо экстрадировать его, либо без исключений передать дело своим органам для судебного преследования.
+          </div>
+        `
+      },
+      {
+        id: 3,
+        title: "Конвенция о борьбе с незаконными актами против безопасности ГА (Монреаль, 1971 г.)",
+        tag: "Конвенция",
+        tagClass: "tag-intl",
+        cat: "intl",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Реквизиты документа</div>
+            Подписана: Монреаль, 23.09.1971 г. Вступила в силу: 21.03.1973 г. СССР ратифицировал в 1971 г. Направлена на защиту от диверсий и саботажа на земле и в воздухе.
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">🚨 Составы преступлений (Ст. 1)</div>
+            <ul>
+              <li>Акт насилия против лица на борту ВС в полёте, если он угрожает безопасности ВС;</li>
+              <li>Разрушение ВС в эксплуатации или повреждение, выводящее его из строя;</li>
+              <li>Помещение на борт ВС устройств или веществ, способных разрушить судно;</li>
+              <li>Разрушение/повреждение аэронавигационного оборудования или создание помех в работе;</li>
+              <li>Сообщение <strong>заведомо ложных сведений</strong>, угрожающих безопасности ВС в полёте.</li>
+            </ul>
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">📋 Обязательства государств (Ст. 6, 7, 10)</div>
+            Заключение преступника под стражу, предварительное следствие, суд либо экстрадиция. Обязательное содействие пассажирам и экипажу в продолжении рейса и возврат ВС владельцу без задержек.
+          </div>
+        `
+      },
+      {
+        id: 4,
+        title: "Протокол о борьбе с актами насилия в международных аэропортах (Монреаль, 1988 г.)",
+        tag: "Протокол",
+        tagClass: "tag-intl",
+        cat: "intl",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Статус и назначение</div>
+            Принят 24.02.1988 г., дополняет Монреальскую конвенцию 1971 года (введён пункт 1 bis с 06.08.1989 г.). Распространяет международную защиту на наземную инфраструктуру аэропортов.
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">🚨 Квалифицируемые деяния</div>
+            Любое лицо совершает преступление, если умышленно с применением оружия или устройств:
+            <ul>
+              <li>Совершает акт насилия против лица в международном аэропорту, причинивший или способный причинить тяжкий вред здоровью или смерть;</li>
+              <li>Разрушает или тяжело повреждает сооружения и оборудование аэропорта;</li>
+              <li>Повреждает находящиеся в аэропорту ВС, не находящиеся в эксплуатации;</li>
+              <li>Нарушает работу служб аэропорта, угрожая безопасности полётов.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 5,
+        title: "Обязанности лётного экипажа при незаконном захвате ВС (Doc 8973/9)",
+        tag: "ИКАО Doc 8973",
+        tagClass: "tag-crew",
+        cat: "crew",
+        content: `
+          <div class="box box-danger">
+            <div class="box-title">⚡ Первоочередные действия экипажа</div>
+            <ol>
+              <li>Установить на ответчике вторичной радиолокации <strong>код 7500 (режим А)</strong>;</li>
+              <li>Немедленно проинформировать орган УВД;</li>
+              <li>Включить табло «Пристегнуть ремни» в салоне.</li>
+            </ol>
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">🧠 Психология и тактика общения (п. 7.15.3.4)</div>
+            Захватчик часто находится в состоянии сильнейшего возбуждения и нестабильности:
+            <ul>
+              <li>Воздерживаться от споров и раздражающих действий;</li>
+              <li>Не провоцировать пассажиров на стихийное задержание (удерживать на местах ремнями);</li>
+              <li><strong>Немедленно прекратить обслуживание любыми алкогольными напитками!</strong></li>
+            </ul>
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">📋 Золотые правила для пилотов</div>
+            <ul>
+              <li>Оценить ситуацию и намерения захватчиков;</li>
+              <li>Выполнять первоначальные требования, если они не несут ущерба безопасности полёта;</li>
+              <li>Терпеливо вести диалог, не вызывая антагонизма;</li>
+              <li><strong>Прежде чем переключить любой тумблер или рычаг управления — заранее объяснить террористам, зачем это делается!</strong></li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 6,
+        title: "Приложение 2 к Конвенции ИКАО. Дополнение В: Незаконное вмешательство",
+        tag: "ИКАО Прил. 2",
+        tagClass: "tag-crew",
+        cat: "crew",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Главная задача КВС</div>
+            КВС делает попытку в кратчайший срок выполнить посадку на ближайшем пригодном или назначенном властями аэродроме, если обстановка на борту позволяет это сделать.
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">📡 Порядок действий при отсутствии связи с ОВД</div>
+            <ul>
+              <li><strong>Полет по маршруту (п. 2.1):</strong> Следовать по текущей линии пути и эшелону до восстановления связи или входа в зону действия РЛС.</li>
+              <li><strong>При вынужденном отклонении от маршрута (п. 2.2):</strong>
+                <ul>
+                  <li>Передавать сигналы на аварийной частоте <strong>121.5 МГц</strong>, использовать приёмоответчики и каналы данных;</li>
+                  <li>Применять правила Doc 7030 (Региональные правила);</li>
+                  <li>Если правила не заданы — занять эшелон, отличающийся от крейсерского эшелона ППП: <strong>на 300 м (1000 фут) выше FL 290</strong> или <strong>на 150 м (500 фут) ниже FL 290</strong>.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 7,
+        title: "Приложение 17 к Конвенции ИКАО: «Защита международной ГА от АНВ»",
+        tag: "SARPs ИКАО",
+        tagClass: "tag-intl",
+        cat: "intl",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Стандарты защиты авиации от АНВ</div>
+            Приложение 17 закрепляет ключевые международные требования безопасности для всех Договаривающихся государств (ДГ).
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">📋 Обязательные меры государства:</div>
+            <ul>
+              <li>Утверждение Национальной программы безопасности ГА и создание Национального комитета по АБ;</li>
+              <li>Требование наличия Программ безопасности для каждого аэропорта и эксплуатанта;</li>
+              <li>100% предполетный досмотр пассажиров, ручной клади, багажа и грузов;</li>
+              <li>Обязательный досмотр и проверка ВС; обыск ВС при подтвержденной угрозе АНВ;</li>
+              <li>Оснащение ВС мерами против проникновения посторонних лиц в кабину экипажа;</li>
+              <li>Уведомление КВС о вооруженных сотрудниках на борту и номерах их кресел;</li>
+              <li>Помощь захваченному ВС (навигация, посадка) и принятие мер по задержанию ВС на земле.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 8,
+        title: "Воздушный кодекс РФ: статьи 58, 58.2, 107, 107.1",
+        tag: "ВК РФ",
+        tagClass: "tag-law",
+        cat: "law",
+        content: `
+          <div class="box box-law">
+            <div class="box-title">👨‍✈️ Статья 58. Права КВС</div>
+            КВС единолично принимает окончательные решения о взлете, полете, посадке, сливе топлива, сбросе багажа. Отдает обязательные распоряжения всем лицам на борту. Вправе применять <strong>меры принуждения</strong> и отдавать распоряжение экипажу применить специальные средства сдерживания (ССС). Вправе сдать дебошира полиции и провести досмотр (если нет службы ТБ).
+          </div>
+          <div class="box box-law">
+            <div class="box-title">🛡️ Статья 58.2. Права членов экипажа</div>
+            Члены экипажа <strong>по распоряжению КВС</strong> имеют право применять меры принуждения и бортовые спецсредства сдерживания (ССС) для пресечения противоправных действий.
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">🛑 Статья 107. Расторжение договора перевозки перевозчиком</div>
+            Перевозчик расторгает договор при нарушении правил поведения, создании угрозы, неподчинении КВС (п. 6) или наличии запрещенных предметов (п. 7). <strong>Провозная плата не возвращается!</strong>
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">📋 Статья 107.1. Реестр лиц с ограничением перевозки («Чёрный список»)</div>
+            Вносится руководителем авиакомпании на <strong>1 год</strong> на основании вступившего в силу постановления суда по ч. 6 ст. 11.17 КоАП РФ или приговора по УК РФ.<br>
+            <strong>Исключения (перевозчик ОБЯЗАН перевезти):</strong>
+            <ul>
+              <li>Единственный способ вернуться в РФ из-за границы;</li>
+              <li>Депортация, выдворение, реадмиссия в РФ;</li>
+              <li>Следование на лечение или обратно (либо сопровождение инвалида);</li>
+              <li>Следование на похороны близкого родственника (при документальном подтверждении).</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 9,
+        title: "Уголовный кодекс РФ: статьи 207, 211, 218",
+        tag: "УК РФ",
+        tagClass: "tag-law",
+        cat: "law",
+        content: `
+          <div class="box box-danger">
+            <div class="box-title">🚨 Ст. 207 УК РФ. Ложное сообщение об акте терроризма</div>
+            <ul>
+              <li><strong>Ч. 1 (хулиганство):</strong> штраф 200–500 тыс. руб. или принудительные работы / ограничение свободы до 3 лет.</li>
+              <li><strong>Ч. 2 (объекты социальной инфраструктуры / ущерб > 1 млн руб.):</strong> штраф 500–700 тыс. руб. либо <strong>лишение свободы от 3 до 5 лет</strong>.</li>
+              <li><strong>Ч. 3 (дестабилизация органов власти):</strong> штраф 700 тыс. – 1 млн руб. либо лишение свободы <strong>от 6 до 8 лет</strong>.</li>
+              <li><strong>Ч. 4 (смерть человека / тяжкие последствия):</strong> штраф 1.5–2 млн руб. либо лишение свободы <strong>от 8 до 10 лет</strong>.</li>
+            </ul>
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">✈️ Ст. 211 УК РФ. Угон воздушного судна</div>
+            <ul>
+              <li><strong>Ч. 1:</strong> лишение свободы на срок <strong>от 4 до 8 лет</strong>.</li>
+              <li><strong>Ч. 2 (группа, насилие, оружие):</strong> лишение свободы <strong>от 7 до 12 лет</strong>.</li>
+              <li><strong>Ч. 3 (орггруппа, гибель человека):</strong> лишение свободы <strong>от 8 до 15 лет</strong>.</li>
+              <li><strong>Ч. 4 (сопряжено с терактом):</strong> от 15 до 20 лет либо <strong>пожизненное лишение свободы</strong>.</li>
+            </ul>
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">💥 Ст. 218 УК РФ. Нарушение правил учёта/перевозки ВВ и пиротехники</div>
+            Принудительные работы до 5 лет либо <strong>лишение свободы на срок до 5 лет</strong>.
+          </div>
+        `
+      },
+      {
+        id: 10,
+        title: "Нарушающие порядок или недисциплинированные пассажиры (Doc 8973/9, гл. 16)",
+        tag: "ИКАО Doc 8973",
+        tagClass: "tag-crew",
+        cat: "crew",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Определение</div>
+            Пассажир, который не соблюдает правила поведения на борту или отказывается выполнять законные указания членов экипажа, нарушая дисциплину и безопасность.
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">🎯 4 уровня угрозы (п. 16.1.2.1)</div>
+            <ul>
+              <li><strong>Уровень 1:</strong> Нарушающее порядок поведение, словесные угрозы, подозрительные действия.</li>
+              <li><strong>Уровень 2:</strong> Физически оскорбительное поведение (рукоприкладство, порча имущества).</li>
+              <li><strong>Уровень 3:</strong> Поведение, угрожающее жизни людей (оружие, прямые угрозы расправой).</li>
+              <li><strong>Уровень 4:</strong> Попытка проникновения или факт вторжения в кабину летного экипажа.</li>
+            </ul>
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">🛡️ Стратегия реагирования</div>
+            Конечная цель действий кабинного экипажа — <strong>не допустить проникновения в кабину лётного экипажа</strong>. Политика авиакомпании едина для всех пассажиров независимо от класса билета. При первом же проявлении нарушителю вручается <em>письменное предупреждение</em> от имени КВС.
+          </div>
+        `
+      },
+      {
+        id: 11,
+        title: "Пропускной режим: назначение, порядок реализации",
+        tag: "Режим ТБ",
+        tagClass: "tag-sec",
+        cat: "sec",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Назначение пропускного режима</div>
+            Исключение несанкционированного доступа физлиц и транспорта в зону транспортной безопасности (ЗТБ); регламентация допуска сотрудников и сторонних лиц; предотвращение вноса запрещенных предметов; организация досмотра.
+          </div>
+          <div class="box box-law">
+            <div class="box-title">🪪 Постоянные и разовые пропуска</div>
+            <ul>
+              <li><strong>Постоянные пропуска:</strong> Выдаются персоналу субъекта ТИ на срок трудового договора, но <strong>не более 5 лет</strong>. Содержат номер, ФИО, должность, фото, секторы зоны ТБ и временной интервал. Носятся на видном месте поверх одежды. При увольнении или нарушениях изымаются.</li>
+              <li><strong>Разовые пропуска:</strong> Выдаются сторонним физическим лицам для разовых работ/посещений.</li>
+            </ul>
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">🛫 Порядок допуска экипажей и пассажиров</div>
+            <ul>
+              <li><strong>Экипаж ВС:</strong> допускается по удостоверениям членов экипажей ГА при наличии задания на полет, генеральной декларации или списка лиц на борту.</li>
+              <li><strong>Пассажиры:</strong> допускаются в перевозочный сектор по перевозочным документам (посадочным талонам) и паспорту.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 12,
+        title: "Внутриобъектовый режим: назначение, порядок реализации",
+        tag: "Режим ТБ",
+        tagClass: "tag-sec",
+        cat: "sec",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Назначение внутриобъектового режима</div>
+            Совокупность мер и правил, регламентирующих порядок перемещения персонала, пассажиров и техники внутри охраняемых зон аэропорта для исключения бесконтрольного перемещения и доступа к ВС.
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">📋 Практическая реализация</div>
+            <ul>
+              <li>Установление регламента сдачи складов, цехов и стоянок ВС под охрану;</li>
+              <li>Оснащение КПП электронными турникетами с контролем времени прохода;</li>
+              <li>Кодовые замки и охранная сигнализация в режимных служебных помещениях;</li>
+              <li>Система опознавательных нарукавных повязок и нагрудных бирок для перронных работников;</li>
+              <li>Патрулирование нарядами охраны стоянок ВС и территории аэродрома;</li>
+              <li>Разметка полос движения транспорта и пешеходов, освещение и ограждение опасных участков.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 13,
+        title: "Средства для терактов: оружие, ВВ, средства взрывания, боеприпасы",
+        tag: "Опасные средства",
+        tagClass: "tag-sec",
+        cat: "sec",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">🔫 Классификация оружия (ФЗ «Об оружии»)</div>
+            <ul>
+              <li><strong>Гражданское:</strong> самообороны (огнестрельное, газовое, электрошокеры), спортивное, охотничье, сигнальное, холодное клинковое;</li>
+              <li><strong>Служебное:</strong> для должностных лиц госорганов и охраны;</li>
+              <li><strong>Боевое стрелковое и холодное:</strong> для армии и МВД.</li>
+            </ul>
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">💣 Взрывчатые вещества (ВВ)</div>
+            <ul>
+              <li><strong>Бризантные:</strong> твердые (прессованные, пластичные, эластичные, сыпучие), жидкие, пенообразные, промышленные;</li>
+              <li><strong>Метательные (пороха):</strong> дымные и бездымные;</li>
+              <li><strong>Инициирующие:</strong> капсюли, взрыватели высокой чувствительности;</li>
+              <li><strong>Пиротехнические составы.</strong></li>
+            </ul>
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">⚡ Средства взрывания и боеприпасы</div>
+            <strong>Средства взрывания:</strong> заряд ВВ, капсюли-детонаторы, запалы, электровоспламенители, огнепроводные и детонирующие шнуры, замыкатели, таймеры, батареи, провода.<br>
+            <strong>Боеприпасы:</strong> снаряды, мины, пиротехника, ручные гранаты (оборонительные Ф-1, наступательные РГД-5).
+          </div>
+        `
+      },
+      {
+        id: 14,
+        title: "Технические средства обеспечения ТБ в аэропортах (средства досмотра)",
+        tag: "Техсредства ТБ",
+        tagClass: "tag-sec",
+        cat: "sec",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 3 основные группы досмотровой аппаратуры</div>
+            В соответствии с технологической структурой аэропортов, средства досмотра делятся на:
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">🖥️ 1. Рентгенотелевизионные интроскопы (РТИ)</div>
+            <ul>
+              <li>Стационарные РТИ (для багажа и ручной клади на конвейере);</li>
+              <li>Переносные РТИ (для проверки подозрительных предметов на месте).</li>
+            </ul>
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">🚪 2. Металлоискатели (МИ)</div>
+            <ul>
+              <li>Стационарные МИ арочного типа (проходные рамки);</li>
+              <li>Переносные (ручные) металлоискатели.</li>
+            </ul>
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">🧪 3. Аппаратура для обнаружения взрывчатых веществ</div>
+            <ul>
+              <li>Детекторы паров и следов ВВ (газоанализаторы, спектрометры);</li>
+              <li>Приборы химического экспресс-анализа.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 15,
+        title: "Оборудование ВС в целях обеспечения ТБ (Doc 8973/9)",
+        tag: "ИКАО Doc 8973",
+        tagClass: "tag-crew",
+        cat: "crew",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">✈️ 5 обязательных компонентов бортовой безопасности</div>
+            Международные стандарты требуют наличия на современных пассажирских ВС:
+          </div>
+          <div class="box box-steps">
+            <ol>
+              <li><strong>Усиленные двери кабины экипажа:</strong> пуленепробиваемые, ударостойкие, с электромеханической системой блокировки изнутри кабины.</li>
+              <li><strong>Системы аварийной сигнализации и СПУ:</strong> скрытые кнопки подачи сигнала нападения и внутренняя телефонная связь.</li>
+              <li><strong>Системы видеонаблюдения (CCTV):</strong> видеокамеры контроля пространства перед дверью кабины экипажа.</li>
+              <li><strong>Специальные средства сдерживания (ССС):</strong> пластиковые наручники-стяжки, удерживающие текстильные ремни.</li>
+              <li><strong>Специальное оборудование для оружия:</strong> запираемые и опечатываемые металлические сейфы и контейнеры.</li>
+            </ol>
+          </div>
+        `
+      },
+      {
+        id: 16,
+        title: "Порядок перевозки ВС ГА оружия, боеприпасов и спецсредств (ФАП-275)",
+        tag: "ФАП-275",
+        tagClass: "tag-sec",
+        cat: "sec",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Базовые правила перевозки оружия</div>
+            Оружие перевозится только в изолированном багажном отсеке ВС в качестве отдельного зарегистрированного багажа в разряженном виде. Перевозка оружия без пассажира запрещена.
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">📊 Нормы на одного пассажира</div>
+            Не более <strong>5 единиц оружия</strong> и не более <strong>1000 патронов общим весом до 5 кг</strong>. Патроны обязательно упаковываются отдельно от оружия!
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">🚫 Категорически запрещено перевозить:</div>
+            Патроны с разрывными или зажигательными пулями, патроны к газовому оружию, баллончики со слезоточивым/раздражающим газом.
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">📋 Процедура сдачи и оформление (4 экземпляра Акта)</div>
+            Приемка проводится сотрудником САБ с пассажиром в изолированной оружейной комнате. Составляется Акт в 4 экземплярах:
+            <ul>
+              <li>1-й — к багажной ведомости службы перевозок;</li>
+              <li>2-й — хранится в службе безопасности аэропорта вылета;</li>
+              <li>3-й — передается назначенному члену экипажа ВС;</li>
+              <li>4-й — выдается пассажиру для получения в пункте прилета.</li>
+            </ul>
+            КВС обязательно уведомляется о наличии оружия на борту!
+          </div>
+        `
+      },
+      {
+        id: 17,
+        title: "Правила по производству досмотра гражданских ВС (1998 г.)",
+        tag: "Правила 1998",
+        tagClass: "tag-sec",
+        cat: "sec",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Субъекты досмотра ВС</div>
+            Выполняется сотрудниками САБ аэропорта с обязательным участием инженерно-авиационной службы (ИАС), флайт-менеджеров или членов экипажа. Оптимально: 2 группы по 2–3 человека (внутри и снаружи).
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">🔍 Технология проведения</div>
+            Досматриваются все отсеки, панели и люки, открываемые без специнструмента. Осмотр ведется по секторам: <strong>от середины к носу и от середины к хвосту</strong>.
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">💣 При обнаружении подозрительного предмета</div>
+            <ul>
+              <li>Не трогать, не двигать, не оказывать никакого воздействия;</li>
+              <li>Немедленно вызвать специалистов-взрывотехников (саперов);</li>
+              <li>Отбуксировать ВС в безопасное место либо удалить предмет по согласованию с сапером.</li>
+            </ul>
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">👤 При обнаружении постороннего лица</div>
+            Задержать, вызвать полицию и погранконтроль. По окончании досмотра специалисты ИАС проверяют закрытие всех панелей и люков.
+          </div>
+        `
+      },
+      {
+        id: 18,
+        title: "Действия экипажа при дебоширах. Применение спецсредств (ПП РФ №978)",
+        tag: "ПП РФ №978",
+        tagClass: "tag-crew",
+        cat: "crew",
+        content: `
+          <div class="box box-danger">
+            <div class="box-title">🚨 Категорический запрет для пилотов (п. 3)</div>
+            <strong>Членам летного экипажа строго ЗАПРЕЩЕНО покидать пилотскую кабину</strong> для оказания помощи по пресечению беспорядков в салоне! Доступ пассажиров к зоне перед дверью кабины немедленно блокируется кабинным экипажем.
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">📋 Алгоритм применения ССС (п. 4, 5, 6)</div>
+            <ol>
+              <li>Экипаж принимает первичные меры и немедленно докладывает КВС.</li>
+              <li>КВС отдает распоряжение дебоширу прекратить противоправные действия.</li>
+              <li>При отказе подчиниться КВС отдает прямое распоряжение кабинному экипажу применить <strong>специальные средства сдерживания (пластиковые наручники, ремни)</strong>.</li>
+              <li>Экипаж фиксирует нарушителя и ведет за ним <strong>непрерывное наблюдение</strong> до посадки.</li>
+            </ol>
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">🚑 Действия после посадки (п. 9, 11)</div>
+            Пассажирам объявляют оставаться на местах. <strong>Оказание медицинской помощи пострадавшим осуществляется в приоритетном порядке</strong> перед выводом дебошира полицией!
+          </div>
+        `
+      },
+      {
+        id: 19,
+        title: "Правила проведения досмотра, повторного досмотра, наблюдения (Приказ МТ РФ №34)",
+        tag: "Приказ МТ №34",
+        tagClass: "tag-sec",
+        cat: "sec",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Цель досмотра и виды контроля</div>
+            Обнаружение оружия, ВВ и запрещенных предметов, а также выявление лиц без законных оснований для входа в ЗТБ. Включает досмотр, дополнительный досмотр, повторный досмотр, наблюдение и собеседование (профайлинг).
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">🔍 Основания для повторного и дополнительного досмотра</div>
+            <ul>
+              <li><strong>Повторный досмотр (п. 7):</strong> проводится при получении информации об угрозе АНВ либо выявлении подозрительных лиц по итогам профайлинга.</li>
+              <li><strong>Дополнительный досмотр (п. 9, 10):</strong> для детального распознавания предметов. По просьбе лица может проводиться конфиденциально в отдельном помещении.</li>
+            </ul>
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">👟 Правила прохода рамки (п. 39, 54)</div>
+            Снятие верхней одежды; снятие ремней шириной более 4 см или толщиной более 0.5 см; снятие обуви с каблуком от 2.5 см или подошвой от 1.0 см. Электроника досматривается со включением. Экипажи ВС досматриваются на отдельном КПП или вне очереди.
+          </div>
+        `
+      },
+      {
+        id: 20,
+        title: "Перечень запрещенных и разрешенных к перевозке предметов (Приказ МТ №34, Прил. №7)",
+        tag: "Приказ МТ №34",
+        tagClass: "tag-sec",
+        cat: "sec",
+        content: `
+          <div class="box box-danger">
+            <div class="box-title">🚫 Категорически запрещено (и в багаже, и в ручной клади):</div>
+            Взрывчатые вещества, порох, патроны к газовому оружию, пиротехника, тротил; бытовые газы (пропан-бутан), баллончики нервно-паралитического действия; бензин, ацетон, метанол; емкости с жидкостями > 100 мл в салоне; калий, натрий, фосфор; токсичные, радиоактивные, едкие вещества, ртуть.
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">🧳 Разрешено в зарегистрированном багаже:</div>
+            <ul>
+              <li>Оружие (в изолированных отсеках по правилам ФАП-275);</li>
+              <li>Охотничьи ножи, сабли, шашки, арбалеты, бытовые ножи и ножницы с лезвием > 60 мм;</li>
+              <li>Алкоголь 24–70% — до 5 л на одного пассажира в розничной таре;</li>
+              <li>Бытовые аэрозоли (до 500 мл баллон) — не более 2 л / 2 кг на пассажира;</li>
+              <li>Ртутный медицинский термометр в футляре — 1 шт. на пассажира.</li>
+            </ul>
+          </div>
+          <div class="box box-summary">
+            <div class="box-title">🎒 Разрешено в ручной клади:</div>
+            Жидкости в емкостях до 100 мл в прозрачном пакете 1 л; сухой лед до 2.5 кг; перекись 3% до 100 мл; товары Duty Free в опломбированном пакете. Членам экипажа разрешены емкости > 100 мл.
+          </div>
+        `
+      },
+      {
+        id: 21,
+        title: "Действия экипажа при угрозе захвата и угона воздушного судна",
+        tag: "Угон ВС",
+        tagClass: "tag-crew",
+        cat: "crew",
+        content: `
+          <div class="box box-steps">
+            <div class="box-title">👩‍✈️ Действия бортпроводников</div>
+            <ul>
+              <li>Немедленно блокировать попытку проникновения захватчиков в кабину экипажа;</li>
+              <li>Передать скрытый сигнал «Опасность» в кабину и доложить КВС по СПУ обстановку;</li>
+              <li>Убеждать преступников оставаться на местах (заявить, что экипаж выполнит требования);</li>
+              <li>Пресекать панику и стихийные силовые попытки пассажиров;</li>
+              <li>По указанию КВС сделать объявление о посадке в зарубежном аэропорту для дезинформации;</li>
+              <li>После посадки добиваться эвакуации детей, женщин и раненых, передавать сведения на землю.</li>
+            </ul>
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">👨‍✈️ Действия командира ВС</div>
+            Заблокировать дверь кабины. Включить сигнал бедствия, код ответчика 7500, доложить диспетчеру УВД. Снизиться до эшелона с нулевым избыточным перепадом давления. Выпустить и зафиксировать шасси. Направить переговорщика.
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">🗣️ Действия переговорщика из состава экипажа</div>
+            При выходе второй пилот страхует дверь изнутри. Заявить, что уполномочен КВС. Затягивать время (ссылаться на нехватку топлива, плохую погоду, отсутствие карт). При наличии одного захватчика КВС вправе принять решение об его обезвреживании силами экипажа.
+          </div>
+        `
+      },
+      {
+        id: 22,
+        title: "Действия КВС и экипажа при сообщении о взрывном устройстве на борту",
+        tag: "Угроза ВУ",
+        tagClass: "tag-crew",
+        cat: "bomb",
+        content: `
+          <div class="box box-steps">
+            <div class="box-title">🛫 1. ВС на земле (стоянка или руление)</div>
+            Запросить место срочной высадки, трап и спецтранспорт. Объявить по салону: <em>«По техническим причинам вылет откладывается...»</em>. Выключить двигатели, провести срочную высадку без ручной клади. Выделить члена экипажа для помощи опергруппе.
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">✈️ 2. ВС произвело взлет и находится в районе аэродрома</div>
+            Включить «Бедствие», запросить внеочередной заход на посадку на аэродром вылета. Сделать объявление о возврате по техпричинам. Заход выполнять строго по указанию УВД, после посадки — экстренная высадка.
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">☁️ 3. ВС в полете на заданном эшелоне</div>
+            <ul>
+              <li>Сигнал «Бедствие», запросить аварийную посадку на ближайшем аэродроме;</li>
+              <li><strong>Занять высоту с нулевым перепадом давления ($\Delta P = 0$)</strong> и разгерметизировать ВС (нулевое давление многократно уменьшает разрушительный эффект возможного взрыва);</li>
+              <li><strong>Выпустить и зафиксировать шасси</strong> (при взрыве гидросистема выпуска может отказать);</li>
+              <li>Провести целевой осмотр салона по чек-листу, заход строить в обход городов.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 23,
+        title: "Действия экипажа при обнаружении на борту ВС в полёте взрывного устройства",
+        tag: "Обнаружение ВУ",
+        tagClass: "tag-crew",
+        cat: "bomb",
+        content: `
+          <div class="box box-danger">
+            <div class="box-title">🛑 Главные запреты</div>
+            Не трогать, не вскрывать, не тянуть за провода, не оказывать механического воздействия! Взрывное устройство держать <strong>сухим</strong>, окружающие материалы — <strong>увлажнять</strong>!
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">🧵 Проверка датчика на подъем</div>
+            Не касаясь предмета, аккуратно завести под него нитку или тонкий твердый картон:
+            <ul>
+              <li><strong>Не проходят:</strong> установлен взрыватель на подъем — <strong>переносить ЗАПРЕЩЕНО!</strong></li>
+              <li><strong>Проходят свободно:</strong> разрешено осторожно перенести в LRBL на жесткой платформе, строго соблюдая исходную ориентацию предмета.</li>
+            </ul>
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">📦 Обустройство места наименьшей опасности (LRBL у служебной двери)</div>
+            <ol>
+              <li>Сделать платформу из мягких вещей до уровня середины двери;</li>
+              <li>Положить слой мокрых материалов толщиной не менее <strong>25 см</strong>;</li>
+              <li>Положить опасный предмет в полиэтилене и зафиксировать липкой лентой ПХЛ-50;</li>
+              <li>Сверху накрыть слоем мокрых подушек/одеял толщиной не менее <strong>25 см</strong>;</li>
+              <li>Заполнить оставшийся объем мокрыми вещами и обесточить проводку в этой зоне.</li>
+            </ol>
+          </div>
+        `
+      },
+      {
+        id: 24,
+        title: "Угроза взрыва в полёте (Doc 8973/9, п. 17.5.5)",
+        tag: "ИКАО Doc 8973",
+        tagClass: "tag-crew",
+        cat: "bomb",
+        content: `
+          <div class="box box-steps">
+            <div class="box-title">📋 Комплекс неотложных мер при обнаружении ВУ</div>
+            <ul>
+              <li>Доложить органу УВД описание и координаты ВУ, запросить рекомендации саперов;</li>
+              <li>Рассадить пассажиров на удаление <strong>не менее 4 рядов кресел</strong> от опасного места;</li>
+              <li>Попросить пассажиров пристегнуть ремни и наклонить головы к коленям;</li>
+              <li>Удалить из зоны кислородные баллоны, спиртное, аптечки; подготовить огнетушители;</li>
+              <li>На свободных креслах устроить завал из мягких подушек и одеял.</li>
+            </ul>
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">⚠️ Срочная посадка против переноса ВУ</div>
+            Если есть возможность сесть немедленно — ВУ оставляют на месте, накрывают полиэтиленом и обкладывают мокрыми вещами. Если сесть быстро нельзя — проверяют ниткой на подъем и переносят в LRBL.<br>
+            <strong>ЗАПРЕЩЕНО перерезать или отключать провода!</strong>
+          </div>
+        `
+      },
+      {
+        id: 25,
+        title: "Уровни угрозы. Недисциплинированные пассажиры (Doc 8973/9, п. 16.3.3)",
+        tag: "Уровни угрозы",
+        tagClass: "tag-crew",
+        cat: "crew",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Документы ICAO (Приложение 6, Doc 9811, Doc 8973/9)</div>
+            Устанавливают стандарты раннего распознавания дебоширов с абсолютной целью: <strong>защитить кабину пилотов от вторжения</strong>.
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">🚨 Детальная шкала 4 уровней опасности:</div>
+            <ul>
+              <li><strong>Уровень 1 (Словесное нарушение):</strong> нецензурная брань, пререкания, отказ пристегнуться. <em>Действия:</em> деэскалация, устное предупреждение, вручение письменного предписания КВС.</li>
+              <li><strong>Уровень 2 (Физическое насилие):</strong> толчки, удары, хватание экипажа, порча кресел. <em>Действия:</em> физическое пресечение, применение наручников/ремней по приказу КВС.</li>
+              <li><strong>Уровень 3 (Угроза жизни):</strong> оружие, угрозы убийством, попытки поджога. <em>Действия:</em> силовая нейтрализация всеми силами (с помощью добровольцев), связывание.</li>
+              <li><strong>Уровень 4 (Штурм кабины):</strong> попытка или факт взлома двери пилотов, угон. <em>Действия:</em> бронедверь в режим LOCK, отпор подручными средствами, экстренная посадка.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 26,
+        title: "Отказ в перевозке лицу из реестра ограниченных пассажиров (ВК РФ)",
+        tag: "ВК РФ 107.1",
+        tagClass: "tag-law",
+        cat: "law",
+        content: `
+          <div class="box box-law">
+            <div class="box-title">⚖️ Механизм ведения реестра («Чёрный список»)</div>
+            Перевозчик имеет законное право отказать в продаже билета лицу из реестра. КВС составляет письменный акт, копия вручается дебоширу под роспись. Решение принимает руководитель авиакомпании на основании судебного акта по КоАП или приговора по УК РФ сроком на <strong>1 год</strong>.
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">🛡️ 5 исключений, когда перевозчик ОБЯЗАН перевезти пассажира:</div>
+            <ol>
+              <li>Возврат в РФ из пункта, откуда самолет — единственный вид транспорта;</li>
+              <li>Депортация, административное выдворение или реадмиссия в РФ;</li>
+              <li>Поездка на лечение или обратно (при подтверждающих медицинских справках);</li>
+              <li>Сопровождение инвалида или ребенка-инвалида к месту лечения и обратно;</li>
+              <li>Поездка на похороны члена семьи / близкого родственника или обратно.</li>
+            </ol>
+          </div>
+        `
+      },
+      {
+        id: 27,
+        title: "ФАП «О воздушной перевозке оружия и патронов» (Приказ МТ РФ №275)",
+        tag: "ФАП-275",
+        tagClass: "tag-sec",
+        cat: "sec",
+        content: `
+          <div class="box box-summary">
+            <div class="box-title">📌 Ключевые нормы ФАП-275</div>
+            Транспортировка разрешена исключительно в изолированном багажном отсеке как отдельное место зарегистрированного багажа. Перевозка оружия без пассажира запрещена.
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">📊 Лимиты на пассажира</div>
+            Максимум <strong>5 единиц оружия</strong>, максимум <strong>1000 патронов</strong>, общий вес патронов — <strong>не более 5 кг</strong>. Патроны обязательно отдельно от оружия!
+          </div>
+          <div class="box box-steps">
+            <div class="box-title">📋 Процедура и документы</div>
+            Осмотр в изолированной комнате САБ. Составляется Акт в 4 экземплярах (багажная ведомость, архив САБ, экипажу, пассажиру). На борт доставляет инспектор САБ. Оружие конвоя перевозится в опечатанном металлическом ящике. КВС уведомляется о вооруженных лицах.
+          </div>
+        `
+      },
+      {
+        id: 28,
+        title: "ФЗ от 09.02.2007 № 16-ФЗ «О транспортной безопасности» (ст. 1)",
+        tag: "16-ФЗ",
+        tagClass: "tag-law",
+        cat: "law",
+        content: `
+          <div class="box box-law">
+            <div class="box-title">📖 Основные понятия закона</div>
+            <ul>
+              <li><strong>Транспортная безопасность:</strong> состояние защищенности объектов транспортной инфраструктуры (ОТИ) и транспортных средств (ТС) от актов незаконного вмешательства (АНВ).</li>
+              <li><strong>Акт незаконного вмешательства (АНВ):</strong> теракт или иное противоправное действие (бездействие), угрожающее деятельности транспорта и повлекшее вред жизни, здоровью или ущерб, либо создавшее такую угрозу.</li>
+              <li><strong>ОТИ:</strong> технологический комплекс (аэродромы, аэропорты, вертодромы, посадочные площадки, здания, системы связи).</li>
+              <li><strong>ТС:</strong> воздушные суда коммерческой авиации, авиации общего назначения и авиационных работ.</li>
+              <li><strong>Зона транспортной безопасности (ЗТБ):</strong> объект или его часть, где действует специальный контрольно-пропускной режим.</li>
+            </ul>
+          </div>
+        `
+      },
+      {
+        id: 29,
+        title: "КоАП РФ: Статья 11.17, часть 6 (Неповиновение КВС)",
+        tag: "КоАП РФ",
+        tagClass: "tag-law",
+        cat: "law",
+        content: `
+          <div class="box box-danger">
+            <div class="box-title">🚨 Состав правонарушения</div>
+            Невыполнение лицами, находящимися на борту воздушного судна, законных распоряжений командира воздушного судна.
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">⚖️ Административное наказание</div>
+            <ul>
+              <li>Административный штраф в размере <strong>от 2 000 до 5 000 рублей</strong>;</li>
+              <li>Или <strong>административный арест на срок до 15 суток</strong>.</li>
+            </ul>
+          </div>
+          <div class="box box-summary">
+            <div class="box-title">📌 Главное последствие</div>
+            Вступление в законную силу постановления по ч. 6 ст. 11.17 КоАП РФ служит законным основанием для авиакомпании внести гражданина в «чёрный список» невыездных авиапассажиров на 1 год!
+          </div>
+        `
+      },
+      {
+        id: 30,
+        title: "ФАП «Подготовка и выполнение полётов в ГА РФ» (Приказ МТ №128)",
+        tag: "ФАП-128",
+        tagClass: "tag-law",
+        cat: "law",
+        content: `
+          <div class="box box-steps">
+            <div class="box-title">👨‍✈️ Пункт 2.6 и 3.3. Полномочия КВС</div>
+            При отсутствии службы ТБ предполетный досмотр ВС, пассажиров и груза проводит КВС. КВС единолично принимает решения о взлете, посадке, сливе топлива, сбросе груза и применяет меры принуждения к нарушителям.
+          </div>
+          <div class="box box-warning">
+            <div class="box-title">💺 Пункт 3.10. Пилотская кабина и рабочие места</div>
+            Пилоты обязаны быть пристегнуты на местах на взлете, посадке и эшелоне. <strong>Запрещено покидание рабочего места более чем одним пилотом одновременно!</strong> В 2-членном экипаже при выходе пилота в кабину обязательно входит бортпроводник.
+          </div>
+          <div class="box box-danger">
+            <div class="box-title">🔒 Пункты 5.102–5.104. Защита кабины и обучение</div>
+            Дверь кабины заперта с момента закрытия внешних дверей до их открытия для высадки пассажиров. На борту обязательно наличие чек-листа осмотра ВС на предмет ВУ. Обязательна регулярная спецподготовка экипажа по АБ (самооборона, ССС, LRBL, защита кабины).
+          </div>
+        `
+      }
+    ];
+
+    // Хранилище выученных вопросов в localStorage
+    let learnedSet = new Set(JSON.parse(localStorage.getItem('learned_ab_ids') || '[]'));
+    let activeFilter = 'all';
+
+    // ПЕРЕМЕННЫЕ РЕЖИМА ТЕСТА
+    let quizQueue = [];
+    let currentQuizIndex = 0;
+    let quizInitialTotal = 0;
+    let quizCorrectCount = 0;
+    let quizRepeatedCount = 0;
+
+    // Сворачивание / разворачивание шапки
+    function toggleHeaderCollapse() {
+      const header = document.getElementById("mainHeader");
+      const btn = document.getElementById("toggleHeaderBtn");
+      const isCollapsed = header.classList.toggle("collapsed");
+
+      if (isCollapsed) {
+        btn.innerHTML = "🔽 Меню";
+        localStorage.setItem("ab_header_collapsed", "true");
+      } else {
+        btn.innerHTML = "🔼 Свернуть";
+        localStorage.setItem("ab_header_collapsed", "false");
+      }
+    }
+
+    // Инициализация и рендер шпаргалки
+    function renderApp() {
+      const container = document.getElementById("cardsList");
+      container.innerHTML = "";
+
+      questions.forEach(q => {
+        const isLearned = learnedSet.has(q.id);
+        const card = document.createElement("article");
+        card.className = `q-card ${isLearned ? 'learned' : 'unlearned'}`;
+        card.id = `card-${q.id}`;
+        card.dataset.id = q.id;
+        card.dataset.cat = q.cat;
+
+        card.innerHTML = `
+          <div class="card-head" onclick="toggleCard(${q.id})">
+            <div class="card-head-left">
+              <span class="num-badge">№ ${q.id}</span>
+              <h2 class="card-title">${q.title}</h2>
+            </div>
+            <div class="card-head-right">
+              <span class="status-icon" id="status-icon-${q.id}">${isLearned ? '✅' : '⏳'}</span>
+              <span class="tag-badge ${q.tagClass}">${q.tag}</span>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="learn-toggle-bar">
+              <button class="btn-learn ${isLearned ? 'is-learned' : 'to-learn'}" id="learn-btn-${q.id}" onclick="toggleLearnStatus(${q.id}, event)">
+                ${isLearned ? '⏳ Отметить как «Надо повторить»' : '✅ Отметить как «Выучено»'}
+              </button>
+            </div>
+            <div class="content-box-inner" id="text-${q.id}">
+              ${q.content}
+            </div>
+            <div class="card-footer">
+              <button class="btn-copy" onclick="copyCard(${q.id}, event)">📋 Копировать ответ</button>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      updateProgress();
+      applyFilters();
+    }
+
+    function toggleCard(id) {
+      const card = document.getElementById(`card-${id}`);
+      if (card) card.classList.toggle("open");
+    }
+
+    function toggleLearnStatus(id, e) {
+      if (e) e.stopPropagation();
+      const card = document.getElementById(`card-${id}`);
+      const btn = document.getElementById(`learn-btn-${id}`);
+      const statusIcon = document.getElementById(`status-icon-${id}`);
+
+      if (learnedSet.has(id)) {
+        learnedSet.delete(id);
+        card.classList.remove('learned');
+        card.classList.add('unlearned');
+        btn.className = 'btn-learn to-learn';
+        btn.innerHTML = '✅ Отметить как «Выучено»';
+        statusIcon.innerText = '⏳';
+      } else {
+        learnedSet.add(id);
+        card.classList.remove('unlearned');
+        card.classList.add('learned');
+        btn.className = 'btn-learn is-learned';
+        btn.innerHTML = '⏳ Отметить как «Надо повторить»';
+        statusIcon.innerText = '✅';
+      }
+
+      localStorage.setItem('learned_ab_ids', JSON.stringify(Array.from(learnedSet)));
+      updateProgress();
+      applyFilters();
+    }
+
+    function updateProgress() {
+      const total = questions.length;
+      const learnedCount = learnedSet.size;
+      const percent = Math.round((learnedCount / total) * 100);
+
+      document.getElementById('progressText').innerText = `Прогресс: ${learnedCount} из ${total} выучено`;
+      document.getElementById('progressPercent').innerText = `${percent}%`;
+      document.getElementById('progressBar').style.width = `${percent}%`;
+
+      document.getElementById('countLearned').innerText = learnedCount;
+      document.getElementById('countUnlearned').innerText = total - learnedCount;
+      document.getElementById('miniProgressText').innerText = `• ${learnedCount}/${total} (${percent}%)`;
+    }
+
+    function setFilter(filterType, btn) {
+      activeFilter = filterType;
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const query = document.getElementById("searchInput").value.toLowerCase().trim();
+      const cards = document.querySelectorAll(".q-card");
+      let visible = 0;
+
+      cards.forEach(card => {
+        const id = parseInt(card.dataset.id);
+        const item = questions.find(q => q.id === id);
+        const isLearned = learnedSet.has(id);
+
+        let matchesCategory = false;
+        if (activeFilter === 'all') matchesCategory = true;
+        else if (activeFilter === 'learned') matchesCategory = isLearned;
+        else if (activeFilter === 'unlearned') matchesCategory = !isLearned;
+        else if (activeFilter === 'bomb') matchesCategory = (item.cat === 'bomb');
+        else matchesCategory = (item.cat === activeFilter);
+
+        const cardText = item.title.toLowerCase() + " " + card.innerText.toLowerCase();
+        const matchesQuery = !query || cardText.includes(query) || item.id.toString() === query;
+
+        if (matchesCategory && matchesQuery) {
+          card.style.display = "block";
+          visible++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      document.getElementById('visibleCounter').innerText = `Показано: ${visible} из ${questions.length}`;
+    }
+
+    function expandAll(state) {
+      document.querySelectorAll(".q-card").forEach(c => {
+        if (c.style.display !== "none") {
+          if (state) c.classList.add("open");
+          else c.classList.remove("open");
+        }
+      });
+    }
+
+    function resetProgress() {
+      if (confirm("Вы уверены, что хотите сбросить отметки обо всех выученных вопросах? Весь прогресс будет обнулён.")) {
+        learnedSet.clear();
+        localStorage.removeItem('learned_ab_ids');
+        renderApp();
+      }
+    }
+
+    function copyCard(id, e) {
+      e.stopPropagation();
+      const item = questions.find(q => q.id === id);
+      const text = document.getElementById(`text-${id}`).innerText;
+      navigator.clipboard.writeText(`Вопрос №${item.id}: ${item.title}\n\n${text}`).then(() => {
+        const btn = e.target;
+        const oldText = btn.innerText;
+        btn.innerText = "✅ Скопировано!";
+        setTimeout(() => btn.innerText = oldText, 2000);
+      });
+    }
+
+    function toggleTheme() {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.body.removeAttribute('data-theme');
+        document.getElementById('themeBtn').innerText = '🌙';
+        localStorage.setItem('ab_theme', 'light');
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('themeBtn').innerText = '☀️';
+        localStorage.setItem('ab_theme', 'dark');
+      }
+    }
+
+    // Режим теста
+    function startQuizMode() {
+      const unlearned = questions.filter(q => !learnedSet.has(q.id));
+
+      if (unlearned.length === 0) {
+        if (confirm("🎉 Все 30 вопросов уже выучены! Запустить повторный тест по всем 30 вопросам для тренировки?")) {
+          quizQueue = [...questions].sort(() => Math.random() - 0.5);
+        } else {
+          return;
+        }
+      } else {
+        quizQueue = [...unlearned].sort(() => Math.random() - 0.5);
+      }
+
+      currentQuizIndex = 0;
+      quizInitialTotal = quizQueue.length;
+      quizCorrectCount = 0;
+      quizRepeatedCount = 0;
+
+      document.getElementById('quizOverlay').classList.add('active');
+      document.getElementById('quizSubbar').style.display = 'flex';
+      document.getElementById('quizFooter').style.display = 'flex';
+      loadCurrentQuizQuestion();
+    }
+
+    function closeQuizMode() {
+      document.getElementById('quizOverlay').classList.remove('active');
+      renderApp();
+    }
+
+    function loadCurrentQuizQuestion() {
+      if (quizQueue.length === 0) {
+        showQuizResults();
+        return;
+      }
+
+      const currentQ = quizQueue[0];
+      const remaining = quizQueue.length;
+      const progressPercent = Math.min(100, Math.round((quizCorrectCount / quizInitialTotal) * 100));
+
+      document.getElementById('quizIndexLabel').innerText = `Вопрос №${currentQ.id} (${quizCorrectCount + 1} из ${quizInitialTotal})`;
+      document.getElementById('quizRemainingLabel').innerText = `Осталось в очереди: ${remaining}`;
+      document.getElementById('quizProgressFill').style.width = `${progressPercent}%`;
+
+      const body = document.getElementById('quizBody');
+      body.innerHTML = `
+        <div class="quiz-question-card">
+          <span class="quiz-q-num">Вопрос № ${currentQ.id} • ${currentQ.tag}</span>
+          <h2 class="quiz-q-title">${currentQ.title}</h2>
+        </div>
+
+        <div class="quiz-reveal-wrap" id="revealWrap">
+          <button class="btn-reveal" onclick="revealAnswer()">
+            👁️ Показать эталонный ответ
+          </button>
+        </div>
+
+        <div class="quiz-answer-content" id="answerContent">
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 8px;">
+            📖 Эталонный ответ для самопроверки:
+          </div>
+          ${currentQ.content}
+        </div>
+      `;
+
+      document.getElementById('evalButtons').style.display = 'none';
+      body.scrollTop = 0;
+    }
+
+    function revealAnswer() {
+      document.getElementById('revealWrap').style.display = 'none';
+      document.getElementById('answerContent').style.display = 'block';
+      document.getElementById('evalButtons').style.display = 'flex';
+    }
+
+    function handleQuizAnswer(isCorrect) {
+      const currentQ = quizQueue.shift();
+
+      if (isCorrect) {
+        learnedSet.add(currentQ.id);
+        localStorage.setItem('learned_ab_ids', JSON.stringify(Array.from(learnedSet)));
+        quizCorrectCount++;
+      } else {
+        quizQueue.push(currentQ);
+        quizRepeatedCount++;
+      }
+
+      loadCurrentQuizQuestion();
+    }
+
+    function showQuizResults() {
+      document.getElementById('quizSubbar').style.display = 'none';
+      document.getElementById('quizFooter').style.display = 'none';
+
+      const body = document.getElementById('quizBody');
+      body.innerHTML = `
+        <div class="quiz-result-view">
+          <div class="quiz-result-icon">🏆</div>
+          <h2 class="quiz-result-title">Тест успешно завершён!</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Все вопросы текущей сессии были отработаны и закреплены.
+          </p>
+
+          <div class="quiz-stats-grid">
+            <div class="stat-box">
+              <div class="stat-val" style="color: var(--success);">${quizCorrectCount}</div>
+              <div class="stat-lbl">Выучено за тест</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" style="color: var(--warning);">${quizRepeatedCount}</div>
+              <div class="stat-lbl">Повторов из-за ошибок</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" style="color: var(--primary);">${learnedSet.size} / 30</div>
+              <div class="stat-lbl">Всего выучено в базе</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <button class="btn-start-quiz" onclick="startQuizMode()">🔄 Пройти ещё раунд</button>
+            <button class="btn-act" style="padding: 10px 18px;" onclick="closeQuizMode()">Вернуться к билетам</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Запуск при старте страницы
+    document.addEventListener("DOMContentLoaded", () => {
+      // Восстановление темы
+      if (localStorage.getItem('ab_theme') === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        document.getElementById('themeBtn').innerText = '☀️';
+      }
+
+      // Восстановление свернутого состояния шапки
+      if (localStorage.getItem('ab_header_collapsed') === 'true') {
+        document.getElementById("mainHeader").classList.add("collapsed");
+        document.getElementById("toggleHeaderBtn").innerHTML = "🔽 Меню";
+      }
+
+      renderApp();
+    });
+  </script>
+</body>
+</html>
